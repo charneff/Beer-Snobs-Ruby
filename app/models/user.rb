@@ -3,4 +3,6 @@ class User < ApplicationRecord
   has_many :reviews #created
   has_many :beers #beers they created
 
+  has_secure_password
+
 end
