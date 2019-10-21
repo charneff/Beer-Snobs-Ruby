@@ -5,6 +5,7 @@ class BreweriesController < ApplicationController
   end
 
   def create
+    binding.pry
     Brewery.create(brewery_params)
   end
 
@@ -13,5 +14,5 @@ class BreweriesController < ApplicationController
   def brewery_params
     params.require(:brewery).permit(:brewery_name, beer_ids: [])
   end
-  
+
 end

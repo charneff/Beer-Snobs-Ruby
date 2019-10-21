@@ -1,45 +1,44 @@
 <h1>Create New Beer</h1>
-<%= render partial: 'layouts/errors', locals: {object: @beer}  %>
-<%= form_for @beer do |f| %>
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br><br>
-</div>
-<div>
-  <%= f.label :style %>
-  <%= f.text_field :style %><br><br>
-</div>
-<div>
-  <%= f.label :abv %>
-  <%= f.text_field :abv %>%<br><br>
-</div>
-<div>
-  <%= f.label :flavor_profile %>
-  <%= f.text_area :flavor_profile %><br><br>
-</div>
+  <%= form_for @beer do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %><br><br>
+    </div>
+    <div>
+      <%= f.label :style %>
+      <%= f.text_field :style %><br><br>
+    </div>
+    <div>
+      <%= f.label :abv %>
+      <%= f.text_field :abv %>%<br><br>
+    </div>
+    <div>
+      <%= f.label :flavor_profile %>
+      <%= f.text_area :flavor_profile %><br><br>
+    </div>
+<!--
+    <p> Select a Brewery: </p>
+    <div>
+      </%= f.text_field :brewery_name, list: "breweries_autocomplete" %>
+      <datalist id="breweries_autocomplete">
+        </% Brewery.all.each do |brewery| %>
+          <option value="</%= brewery.name %>">
+        </% end %>
+      </datalist>
+      <textarea name="brewery[name]"></textarea>
 
-<p> Select a Brewery: </p>
-<div>
-  <%= f.text_field :brewery_name, list: "breweries_autocomplete" %>
-  <datalist id="breweries_autocomplete">
-    <% Brewery.all.each do |brewery| %>
-      <option value="<%= brewery.name %>">
-    <% end %>
-  </datalist>
-  <textarea name="brewery[name]"></textarea>
+    </div> -->
 
-</div>
+    <p> Or create a new Brewery: </p>
+    <div>
+      <%=f.fields_for :brewery do |ba| %>
+        <%= ba.label :name %>
+        <%= ba.text_field :name %>
 
-<p> Or create a new Brewery: </p>
-<div>
-  <%=f.fields_for :brewery do |ba| %>
-    <%= ba.label :name %>
-    <%= ba.text_field :name %>
-
-    <%= ba.label :location  %>
-    <%= ba.text_field :location %>
-  <% end %>
-</div>
-<br>
-<%= f.submit %>
+        <%= ba.label :location  %>
+        <%= ba.text_field :location %>
+      <% end %>
+    </div>
+  <br>
+  <%= f.submit %>
 <% end %>
