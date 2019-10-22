@@ -6,8 +6,6 @@ class BeersController < ApplicationController
   end
 
   def create
-    brewery = Brewery.find_or_create_by(name: params[:beer][:brewery_name], location: params[:beer][:brewery_location])
-
     @beer = Beer.create(beer_params)
     @beer.user_id = session[:user_id]
 
@@ -36,7 +34,7 @@ class BeersController < ApplicationController
   private
 
   def beer_params
-     params.require(:beer).permit(:name, :style, :abv, :flavor_profile, :brewery_name, :brewery_location)
+     params.require(:beer).permit(:name, :style, :abv, :flavor_profile, :brewery_id, brewery_attributes:[:name, :location])
    end
 
 end

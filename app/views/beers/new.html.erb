@@ -16,41 +16,21 @@
       <%= f.label :flavor_profile %><br>
       <%= f.text_area :flavor_profile %><br><br>
     </div>
+    <p> Select a Brewery: </p>
     <div>
-      <%= f.label :brewery_name %>
-      <%= f.text_field :brewery_name %>
-    </div>
-    <div>
-      <%= f.label :brewery_location %>
-      <%= f.text_field :brewery_location %>
+      <%= f.collection_select :brewery_id, Brewery.all, :id, :name, include_blank: 'Select One' %>
+
     </div>
 
+    <p> Or Create One: </p>
+    <div>
+      <%= f.fields_for :brewery do |b| %>
+        <%= b.label :name %>
+        <%= b.text_field :name %>
+        <%= b.label :location %>
+        <%= b.text_field :location %>
+      <% end %>
     </div>
 
   <%= f.submit %>
   <% end %>
-<!--
-    <p> Select a Brewery: </p>
-    <div>
-      </%= f.text_field :brewery_name, list: "breweries_autocomplete" %>
-      <datalist id="breweries_autocomplete">
-        </% Brewery.all.each do |brewery| %>
-          <option value="</%= brewery.name %>">
-        </% end %>
-      </datalist>
-      <textarea name="brewery[name]"></textarea>
-
-    </div> -->
-<!--
-    <p> Or create a new Brewery: </p>
-    <div>
-      </%=f.fields_for :brewery do |ba| %>
-        </%= ba.label :name %>
-        </%= ba.text_field :name %>
-
-        </%= ba.label :location  %>
-        </%= ba.text_field :location %>
-      </% end %>
-    </div>
-  <br>
-   -->

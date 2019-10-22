@@ -12,20 +12,9 @@ class Beer < ApplicationRecord
     order(:name)
   end
 
-  def brewery_name=(name)
-    self.brewery = Brewery.find_or_create_by(name: name)
-  end
-
-  def brewery_name
-     self.brewery ? self.brewery.name : nil
-  end
-
-  def brewery_location=(location)
-    self.brewery = Brewery.find_or_create_by(location: location)
-  end
-
-  def brewery_location
-     self.brewery ? self.brewery.location : nil
+  def brewery_attributes=(attributes)
+    self.brewery = Brewery.find_or_create_by(attributes) if !attributes['name'].empty?
+    self.brewery
   end
 
   def not_a_duplicate
