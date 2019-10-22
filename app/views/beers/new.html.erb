@@ -18,7 +18,7 @@
     </div>
     <p> Select a Brewery: </p>
     <div>
-      <%= f.collection_select :brewery_id, Brewery.all, :id, :name, include_blank: 'Select One' %>
+      <%= f.collection_select :brewery_id, Brewery.all, :id, :name_and_location, include_blank: 'Select One' %>
 
     </div>
 
@@ -30,7 +30,7 @@
         <%= b.label :location %>
         <%= b.text_field :location %>
       <% end %>
-    </div>
+    </div><br>
 
   <%= f.submit %>
   <% end %>
