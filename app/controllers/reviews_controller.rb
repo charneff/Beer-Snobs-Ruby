@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  
+  before_action :redirect_if_not_logged_in
+
   def new
     if @beer = Beer.find_by_id(params[:beer_id])
       @review = @beer.reviews.build

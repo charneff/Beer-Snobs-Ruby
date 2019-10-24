@@ -1,4 +1,6 @@
 class BeersController < ApplicationController
+  before_action :set_beer, only:[:show, :edit, :update]
+  before_action :redirect_if_not_logged_in
 
   def new
     @beer = Beer.new
@@ -35,6 +37,9 @@ class BeersController < ApplicationController
 
   def beer_params
      params.require(:beer).permit(:name, :style, :abv, :flavor_profile, :brewery_id, brewery_attributes:[:name, :location])
-   end
+  end
 
+  def set_beer
+    @beer = Beer.find_by(params[:id])
+    redirect to beers_path if !@beer
 end
