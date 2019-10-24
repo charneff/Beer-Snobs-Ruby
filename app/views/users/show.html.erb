@@ -1,2 +1,7 @@
-You Have Signed In!
 Welcome <%= @user.username %>
+<h3>Here are the beers reviewed by you!</h3>
+<ul>
+  <% @user.reviewed_beers.each do |b| %>
+    <li><%= link_to b.name, beer_path(b) %></li>
+  <%end %>
+</ul>
