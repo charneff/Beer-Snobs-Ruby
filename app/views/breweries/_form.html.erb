@@ -1,0 +1,9 @@
+<%= form_for @brewery do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br><br>
+
+  <%= f.label :location %>
+  <%= f.text_field :location %><br><br>
+
+  <%= f.submit "Submit Brewery Info" %>
+<% end %>

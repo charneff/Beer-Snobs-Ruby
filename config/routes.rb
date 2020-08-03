@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   resources :beers do
     resources :reviews, only: [:new, :index]
   end
-  resources :breweries, only: [:index, :show]
+  resources :breweries, only: [:index, :show, :new, :create]
+  resources :breweries do
+    resources :beers, only: [:show, :index]
+  end
   resources :users, only: [:new, :create, :show]
   patch 'reviews/:id', to: 'reviews#update'
   delete '/beers/:id', to: 'beer#destroy', as:'delete_beer'

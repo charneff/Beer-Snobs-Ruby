@@ -1,4 +1,7 @@
-<h1> All Reviews </h1>
+<h1> All Reviews
+<% if @beer %>
+for <%= @beer.name %>
+<% end %></h1>
 <ul>
 <% @reviews.each do |review| %>
   <li><h2><%= review.stars %> - <%= review.title %></h2>
