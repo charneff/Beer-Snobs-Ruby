@@ -1,2 +1,4 @@
 <h1>Edit info for <%= @beer.name %></h1>
+<%= render partial: 'layouts/errors', locals: {object: @beer} %>
+<%= render partial: 'layouts/flash' %>
 <%= render partial: 'form' %>

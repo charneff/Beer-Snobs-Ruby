@@ -1,5 +1,8 @@
 <h1> All Breweries </h1>
+<%= render partial: 'layouts/search', locals: {object_path: breweries_path}  %>
+
+<%= link_to "Create New Brewery", new_brewery_path %>
 
 <% @breweries.each do |brewery| %>
-  <h2><%= brewery.name %> - <%= brewery.location %></h2>
+  <h2><%= link_to brewery.name_and_location, brewery_beers_path(brewery) %></h2>
 <% end %>

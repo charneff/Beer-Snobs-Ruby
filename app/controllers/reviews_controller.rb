@@ -21,7 +21,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-
   end
 
   def index
@@ -33,6 +32,10 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    if current_user != @review.user
+      flash[:alert] = "You cannot edit another user's review"
+      redirect_to review_path(@review)
+    end
 
   end
 
@@ -43,6 +46,11 @@ class ReviewsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    Review.find(params[:id]).destroy
+    redirect_to reviews_path
   end
 
   private

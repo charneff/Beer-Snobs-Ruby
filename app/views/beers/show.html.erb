@@ -5,6 +5,7 @@
 <h2>by <%= @beer.brewery.name %> </h2>
 <div>
   <p><%= @beer.flavor_profile %></p>
+  <p> <%= image_tag @beer.image if @beer.image.attached? %> </p>
 </div>
 
 <%= form_tag beer_path(@beer.id), method: "delete" do %>

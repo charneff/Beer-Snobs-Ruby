@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   resources :beers do
     resources :reviews, only: [:new, :index]
   end
-  resources :breweries, only: [:index, :show, :new, :create]
-  resources :breweries do
+  
+  resources :breweries, only: [:index, :show, :new, :create] do
     resources :beers, only: [:show, :index]
   end
   resources :users, only: [:new, :create, :show]
-  patch 'reviews/:id', to: 'reviews#update'
-  delete '/beers/:id', to: 'beer#destroy', as:'delete_beer'
+  # patch 'reviews/:id', to: 'reviews#update'
+  # delete '/beers/:id', to: 'beer#destroy', as:'delete_beer'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

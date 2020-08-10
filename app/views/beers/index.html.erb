@@ -1,8 +1,12 @@
 <h1> All Beers
 <% if @brewery %>
-by <%= @brewery.name %>
+  by <%= @brewery.name %>
+  <% which_beer = brewery_beers_path(@brewery) %>
+<% else %>
+  <% which_beer = beers_path %>
 <% end %></h1>
 
+<%= render partial: 'layouts/search', locals: {object_path: which_beer}  %>
 
 <% @beers.each do |beer| %>
     <h2><%= link_to beer.name, beer_path(beer.id) %> - <%= beer.abv %>%, by <%= beer.brewery.name %></h2>

@@ -10,7 +10,11 @@ for <%= @beer.name %>
     <h4><p><%= review.content %></p></h4></li>
   </div>
   <% if review.user_id == current_user[:id] %>
-    <%= link_to "Update your review", edit_review_path(review.id) %>
+    <%= link_to "Update your review", edit_review_path(review.id) %><br>
+    <%= form_tag review_path(review.id), method: "delete" do %>
+      <%= submit_tag "Delete Review" %>
+    <% end %>
   <% end %>
+
 <% end %>
 </ul>

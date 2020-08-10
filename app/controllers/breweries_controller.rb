@@ -3,7 +3,11 @@ class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update]
 
   def index
-    @breweries = Brewery.alpha
+    if params[:q]
+      @breweries = Brewery.where("name like ?", "%#{params[:q]}%").alpha
+    else
+      @breweries = Brewery.alpha
+    end
   end
 
   def new
@@ -18,7 +22,7 @@ class BreweriesController < ApplicationController
       @brewery = Brewery.create(brewery_params)
 
       if @brewery.save
-        flash[:alert] = "Beer created!"
+        flash[:alert] = "Brewery created!"
         redirect_to brewery_path(@brewery)
       else
         render :new
@@ -34,6 +38,7 @@ class BreweriesController < ApplicationController
   def update
     @brewery.update(brewery_params)
     if @brewery.save
+      flash[:alert] = "Brewery updated"
       redirect_to brewery_path(@brewery)
     else
       render :edit
