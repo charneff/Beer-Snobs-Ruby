@@ -1,3 +1,4 @@
+<div id='form'>
 <%= form_for(@review) do |f| %>
  <% if params[:beer_id] %>
    <%= f.hidden_field :beer_id %>
@@ -22,3 +23,4 @@
 
 <%= f.submit "Create Review" %>
 <% end %>
+</div>
